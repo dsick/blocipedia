@@ -2,14 +2,18 @@ require 'rails_helper'
 
 RSpec.describe WikisController, type: :controller do
 
-  let(:my_user) { create(:user) }
-  let(:other_user) { create(:user) }
-  let(:my_wiki) { create(:wiki, user: my_user) }
+  let(:title) {Faker::Lorem.words}
+  let(:body) {Faker::Lorem.paragraph}
+  let(:private) {false}
+
+
+  let(:user) { create(:user) }
+  let(:wiki) { create(:wiki) }
 
   context "guest" do
     describe "GET show" do
       it "returns http success" do
-        get :show, id: my_wiki.id
+        get :show, id: wiki.id
         expect(response).to have_http_status(:success)
       end
 
