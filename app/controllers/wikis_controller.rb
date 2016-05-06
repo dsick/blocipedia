@@ -10,12 +10,14 @@ class WikisController < ApplicationController
   end
 
   def new
+
     @wiki = Wiki.new
   end
 
   def create
-    @wiki = Wiki.new(wiki_params)
-
+    @wiki = current_user.wikis.build(wiki_params)
+    #@wiki = Wiki.new(wiki_params)
+    byebug
     if @wiki.save
       redirect_to @wiki, notice: "Wiki was saved successfully."
     else
@@ -25,13 +27,13 @@ class WikisController < ApplicationController
   end
 
   def edit
-     @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.find(params[:id])
   end
 
 
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, :user_id)
   end
 end
