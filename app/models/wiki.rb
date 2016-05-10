@@ -3,6 +3,8 @@ class Wiki < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body,  presence: true
-  validates :private, presence: true
+  #validates :private, presence: true
   validates :user, presence: true
+
+
 end

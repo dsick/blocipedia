@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :wikis, only: [:new, :create, :index, :edit, :show, :destroy]
-
+  resources :wikis
   devise_for :users
   get 'welcome/index'
   root 'welcome#index'

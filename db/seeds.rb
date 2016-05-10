@@ -4,7 +4,7 @@
 # Create an standard user
 dave = User.create!(
   username: 'dsick',
-  email:    'sick@davesick.com',
+  email:    'sick@davesick.net',
   password: 'password',
   password_confirmation: 'password',
   confirmed_at: Time.now
