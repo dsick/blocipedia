@@ -24,7 +24,7 @@ users = User.all
 # Create Wikis
 15.times do
   Wiki.create!(
-    title: Faker::Lorem.words,
+    title: Faker::Lorem.sentence.titleize,
     body: Faker::Lorem.paragraph,
     private: [false, true].sample,
     user: users.sample

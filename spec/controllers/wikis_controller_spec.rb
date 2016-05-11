@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe WikisController, type: :controller do
 
-  let(:title) {Faker::Lorem.words}
+  let(:title) {Faker::Lorem.sentence.titleize}
   let(:body) {Faker::Lorem.paragraph}
   let(:private) {false}
 
@@ -37,7 +37,7 @@ RSpec.describe WikisController, type: :controller do
 
     describe "POST create" do
       it "returns http redirect" do
-        post :create, wiki_id: my_wiki.id, wiki: {title: Faker::Lorem.words, body: Faker::Lorem.paragraph}
+        post :create, wiki_id: my_wiki.id, wiki: {title: Faker::Lorem.sentence.titleize, body: Faker::Lorem.paragraph}
         expect(response).to redirect_to(new_user_session_path)
       end
     end
@@ -51,7 +51,7 @@ RSpec.describe WikisController, type: :controller do
 
     describe "PUT update" do
       it "returns http redirect" do
-        new_title = Faker::Lorem.words
+        new_title = Faker::Lorem.sentence.titleize
         new_body = Faker::Lorem.paragraph
 
         put :update,  id: my_wiki.id, wiki: {title: new_title, body: new_body}
@@ -158,7 +158,7 @@ RSpec.describe WikisController, type: :controller do
       end
 
       it "redirects to the updated wiki" do
-        new_title = Faker::Lorem.words
+        new_title = Faker::Lorem.sentence.titleize
         new_body = Faker::Lorem.paragraph
         new_private = true
 
