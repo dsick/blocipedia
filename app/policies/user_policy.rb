@@ -1,21 +1,20 @@
-class ApplicationPolicy
-  attr_reader :user, :record
+class UserPolicy < ApplicationPolicy
+  attr_reader :user
 
-  def initialize(user, record)
+  def initialize(user)
     @user = user
-    @record = record
   end
 
   def index?
-    skip_authorization
+    false
   end
 
   def show?
-    user.standard?
+    scope.where(:id => record.id).exists?
   end
 
   def create?
-    user.present?
+    skip_authorization
   end
 
   def new?
@@ -27,11 +26,11 @@ class ApplicationPolicy
   end
 
   def edit?
-    user.standard?
+    user.present?
   end
 
   def destroy?
-    user.admin?
+    false
   end
 
   def scope

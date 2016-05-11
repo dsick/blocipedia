@@ -1,29 +1,29 @@
-class WikiPolicy
-  attr_reader :user, :record
+class WikiPolicy < ApplicationPolicy
+  attr_reader :user, :wiki
 
-  def initialize(user, record)
+  def initialize(user, wiki)
     @user = user
-    @record = record
+    @wiki = wiki
   end
 
   def index?
-    false
+    true
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    true
   end
 
   def create?
-    false
+    user.present?
   end
 
   def new?
-    create?
+    skip_authorization
   end
 
   def update?
-    false
+    create?
   end
 
   def edit?
