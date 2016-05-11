@@ -22,4 +22,6 @@
 en:
   hello: "Hello world"
   pundit:
-   default: "You cannot perform this action."
+   default: "You do not have permission to perform this action."
+   wiki_policy:
+    update?: "You must be the wiki owner or an admin to edit this wiki"

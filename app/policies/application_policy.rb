@@ -7,31 +7,31 @@ class ApplicationPolicy
   end
 
   def index?
-    skip_authorization
+    false
   end
 
   def show?
-    user.standard?
+    scope.where(:id => record.id).exists?
   end
 
   def create?
-    user.present?
+    false
   end
 
   def new?
-    skip_authorization
+    create?
   end
 
   def update?
-    user.present?
+    false
   end
 
   def edit?
-    user.standard?
+    update?
   end
 
   def destroy?
-    user.admin?
+    false
   end
 
   def scope
