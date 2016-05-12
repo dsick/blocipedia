@@ -3,7 +3,7 @@ require "rails_helper"
 
 RSpec.describe WikiPolicy, type: :policy do
   subject { WikiPolicy.new(user, wiki) }
-  let(:title) {Faker::Lorem.words}
+  let(:title) {Faker::Lorem.sentence.titleize}
   let(:body) {Faker::Lorem.paragraph}
   let(:private) {false}
 
@@ -28,7 +28,6 @@ RSpec.describe WikiPolicy, type: :policy do
 
   context "for a user" do
     let(:user) { create(:user) }
-byebug
     it { should permit(:show)    }
     it { should permit(:create)  }
     it { should permit(:new)     }
