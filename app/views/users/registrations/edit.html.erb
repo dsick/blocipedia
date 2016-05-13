@@ -37,6 +37,10 @@
   </div>
 <% end %>
 
+<h3>Upgrade to Premium</h3>
+<p>Upgrdae to the premium plan and create as many private wikis as you want!</p>
+<%= render :template => 'charges/new' %>
+
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>

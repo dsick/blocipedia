@@ -1,0 +1,12 @@
+<% if current_user.premium? %>
+  <%= render partial: "charges/downgrade" %>
+<% else %>
+	<%= @stripe_btn_data = {
+	      key: Rails.configuration.stripe[:publishable_key],
+	      description: "Premium Blocipedia Subscription - #{current_user.username}",
+	      amount: 19_00 } %>
+	<%= form_tag charges_path do %>
+		<h4>Click the button!</h4>
+		<script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+	<% end %>
+<% end %>
