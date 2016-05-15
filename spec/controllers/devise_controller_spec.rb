@@ -1,18 +1,6 @@
 require 'rails_helper'
 require 'devise'
 
-RSpec.configure do |config|
-  config.include Devise::TestHelpers, :type => :controller
-end
-
-def login_user
-    before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user)
-      user.confirm
-      sign_in user
-    end
-  end
 
 RSpec.describe DeviseController, type: :controller do
 
