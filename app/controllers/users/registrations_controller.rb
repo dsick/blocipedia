@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    byebug
      super
      @stripe_btn_data = {
         key: "#{ Rails.configuration.stripe[:publishable_key] }",
