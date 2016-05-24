@@ -2,16 +2,23 @@ require "rails_helper"
 
 
 describe WikiPolicy do
-  let(:user) {create (:user)}
-  subject { WikiPolicy.new(user, wiki) }
-  let(:title) {Faker::Lorem.sentence.titleize}
-  let(:body) {Faker::Lorem.paragraph}
-  let(:private) {false}
+  let(:user) {create(:user, role: 'standard')}
+  subject { described_class }
 
+  let(:wiki) { FactoryGirl.create(:wiki, user: user) }
+
+  permissions :update?, :edit? do
+    it "denies access if no user" do
+      expect(subject).not_to permit(nil, wiki)
+    end
+    it "allow access if user present" do
+      expect(subject).to permit(user, wiki)
+    end
+  end
 
   context "context for no user" do
     let(:user) {nil}
-    let(:wiki) { FactoryGirl.create(:wiki) }
+    
 
     it { should     ppermit(:index)   }
     it { should     ppermit(:show)    }

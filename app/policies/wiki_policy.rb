@@ -5,7 +5,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user || user.admin?
+    user.present? && (record.user == user || user.admin?)
   end
 
   def destroy?
