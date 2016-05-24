@@ -1,5 +1,9 @@
 class WikiPolicy < ApplicationPolicy
 
+  def index?
+    true
+  end
+
   def create?
     user.present?
   end
@@ -9,7 +13,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user || user.admin?
+    user.present? && (record.user == user || user.admin?)
   end
 
 end
