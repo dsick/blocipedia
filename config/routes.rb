@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
 
   resources :wikis
-  devise_for :users
-  resources :charges, only: [:new, :create, :downgrade]
+
+  # scope :users do
+  #   get 'registrations/edit'
+  # end
+
+  devise_for :users #, controllers: { registrations: 'users/registrations' }
+
+  resources :charges, only: [:new, :create] do
+    collection do
+      post 'downgrade'
+    end
+
+  end
+
   get 'welcome/index'
   root 'welcome#index'
-  get /resource/edit
+  #get resource/edit
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
