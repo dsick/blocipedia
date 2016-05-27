@@ -20,6 +20,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'awesome_print'
 end
 
 gem 'sass-rails', '~> 5.0'

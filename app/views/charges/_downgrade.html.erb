@@ -1,2 +1,2 @@
 <h4>Downgrade To Standard Plan</h4>
-<%= button_to 'Downgrade Membership', downgrade_charges_path, class: 'btn btn-primary btn-lg' %>
+<%= link_to 'Downgrade Membership', downgrade_charges_path, data:  { confirm: 'All your private wikis will be made public. Are you sure you want to downgrade?' }, class: 'btn btn-primary btn-lg' %>
