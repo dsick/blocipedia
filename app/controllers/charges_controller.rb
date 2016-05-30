@@ -47,6 +47,7 @@ class ChargesController < ApplicationController
   def downgrade
     #cancel sub
     current_user.update_attributes!(role: 'standard')
+    Wiki.where(user_id: current_user.id, private: true).update_all(private: false)
     redirect_to edit_user_registration_path(current_user)
   end
 
