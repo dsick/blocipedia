@@ -5,6 +5,7 @@ class ChargesController < ApplicationController
     if user_signed_in?
       @stripe_btn_data = {
         key: "#{ Rails.configuration.stripe[:publishable_key] }",
+        #key: "pk_test_z3971ulOJS1heFJXHUYprE5Z",
         description: "Premium Blocipedia Subscription - #{current_user.username}",
         amount: 19_00 #Amount.default
       }
@@ -33,7 +34,7 @@ class ChargesController < ApplicationController
     current_user.update_attributes!(role: 'premium')
 
     flash[:notice] = "Thanks for signing up for Blocipedia Premium, #{current_user.email}!"
-    redirect_to user_path(current_user) # or wherever
+    redirect_to edit_user_registration_path # or wherever
 
     # Stripe will send back CardErrors, with friendly messages
     # when something goes wrong.
@@ -46,7 +47,7 @@ class ChargesController < ApplicationController
   def downgrade
     #cancel sub
     current_user.update_attributes!(role: 'standard')
-    #
+    redirect_to edit_user_registration_path(current_user)
   end
 
 end
