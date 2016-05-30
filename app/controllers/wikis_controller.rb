@@ -11,10 +11,13 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
 
   def create
     @wiki = current_user.wikis.build(wiki_params)
+    authorize @wiki
+
     #@wiki = Wiki.new(wiki_params)
     if @wiki.save
       redirect_to @wiki, notice: "Wiki was saved successfully."
@@ -30,7 +33,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-
+    authorize @wiki
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -43,6 +46,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
 
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
