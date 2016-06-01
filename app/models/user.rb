@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
     self.role ||= :standard
   end
   has_many :wikis, dependent: :destroy
+  has_many :collaboartors 
+  
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
