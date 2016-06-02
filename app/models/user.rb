@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
     self.role ||= :standard
   end
   has_many :wikis, dependent: :destroy
-  has_many :collaboartors 
+  has_many :collaborators
+  has_many :collaboratoring_wikis, through: :collaborators, as: :wiki
   
 
   # Include default devise modules. Others available are:

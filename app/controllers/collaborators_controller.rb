@@ -1,5 +1,10 @@
 class CollaboratorsController < ApplicationController
   
+  def index
+    @wiki = Wiki.find(params[:wiki_id])
+    @user = User.all
+  end
+
   def show
     @collaborator = Collaborator.find(params[:id])
   end
@@ -7,7 +12,7 @@ class CollaboratorsController < ApplicationController
   def create
     @wiki = Wiki.find(params[:wiki_id])
     @collaborator = @wiki.collaborators.build(collaborator_params) 
-    @collaborator.user = current_user
+    @collaborator.user = params[:user_id]
 
     if @collaborator.save
       flash[:notice] = "You Added a collaborator"
@@ -18,7 +23,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:post_id])
+    @wiki = Wiki.find(params[:wiki_id])
     @collaborator = @wiki.collaborators.find(params[:id])
 
     if @collaborator.destroy

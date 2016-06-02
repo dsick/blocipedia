@@ -27,7 +27,7 @@
   <div class="col-md-8">
     <h2>Collaborators</h2>
     
-      <%= render @wiki.collaborators %>
+      <%= render partial: "collaborators/index", :locals => { wiki: @wiki, users: @wiki.collaborators } %>
   
       <p>No Collaborators yet. Click Edit to add a Collaborator.</p>
 

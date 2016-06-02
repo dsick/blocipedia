@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-8">
+		<h1>Collaborators</h1>
+		<!-- #29 -->
+		<% users.each do |user| %>
+			<div>
+				<%= user.email %>
+				<% if @wiki.collaboratoring_users.include? user %>
+					<% button_to "delete", wiki_collaborator_path(@wiki.id, user_id: user.id), action: :destroy %>
+				<% else %>
+					<% button_to "Create", wiki_collaborators_path(@wiki.id, user_id: user.id), method: :post %>
+				<% end %>
+			</div>
+		<% end %>
+		
+	</div>
+</div>
