@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
   end
   has_many :wikis, dependent: :destroy
   has_many :collaborators
-  has_many :collaboratoring_wikis, through: :collaborators, as: :wiki
-  
+  has_many :collaborating_wikis, through: :collaborators, source: :wiki
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-md-8">
+		<h1>Collaborators for <%= @wiki.title %></h1>
+		<!-- #29 -->
+		<% @users.each do |user| %>
+			<div class="row">
+				<div class="col-md-1">
+					<%= user.id %>
+				</div>
+				<div class="col-md-3">
+					<%= user.email %>
+				</div>
+				<div class="col-md-3">
+					<% if @wiki.collaborating_users.include? user %>
+						<%= button_to "Remove Collaborator", wiki_collaborator_path(@wiki.id, @wiki.collaborator_for(user.id)), method: :delete, class: "btn btn-danger" %>
+					<% else %>
+						<%= button_to "Add as Collaborator", wiki_collaborators_path(@wiki.id, user_id: user.id), method: :post, class: "btn btn-success" %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+		
+	</div>
+</div>

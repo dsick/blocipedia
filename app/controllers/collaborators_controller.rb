@@ -2,7 +2,7 @@ class CollaboratorsController < ApplicationController
   
   def index
     @wiki = Wiki.find(params[:wiki_id])
-    @user = User.all
+    @users = User.all
   end
 
   def show
@@ -11,8 +11,8 @@ class CollaboratorsController < ApplicationController
 
   def create
     @wiki = Wiki.find(params[:wiki_id])
-    @collaborator = @wiki.collaborators.build(collaborator_params) 
-    @collaborator.user = params[:user_id]
+    @collaborator = @wiki.collaborators.build 
+    @collaborator.user_id = params[:user_id]
 
     if @collaborator.save
       flash[:notice] = "You Added a collaborator"
@@ -31,6 +31,7 @@ class CollaboratorsController < ApplicationController
     else
       flash[:alert] = "Collaborator couldn't be deleted. Try again."
     end
+    redirect_to wiki_collaborators_path(@wiki)
 
   end
 
