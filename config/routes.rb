@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :wikis
+  resources :collaborators, only: [:show]
 
+  resources :wikis
+  resources :wikis, only: [] do
+    resources :collaborators, only: [:index, :create, :destroy]
+  end
   # scope :users do
   #   get 'registrations/edit'
   # end
 
   devise_for :users #, controllers: { registrations: 'users/registrations' }
+
 
   resources :charges, only: [:new, :create] do
     collection do

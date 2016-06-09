@@ -18,6 +18,12 @@
         <%= f.check_box :private %> Private wiki
         <% end %>
       </div>
+      <div class="row">
+        <div class="col-md-8">
+            <%= render partial: "collaborators/collaborators" %>
+            <br />
+        </div>
+      </div>
     <% end %>
     <%= f.submit "Save", class: 'btn btn-success' %>
     <% end %>
